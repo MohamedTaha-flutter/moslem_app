@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moslem_app/core/constant/constant.dart';
 import 'package:moslem_app/core/style/text_style.dart';
+import 'package:moslem_app/feature/azkar/data/models/home_view_model.dart';
 import 'package:moslem_app/feature/azkar/presentation/view/am_pm_view.dart';
 import 'package:moslem_app/feature/azkar/presentation/view/house_view.dart';
 import 'package:moslem_app/feature/azkar/presentation/view/noom_view.dart';
@@ -11,7 +12,40 @@ import 'package:moslem_app/feature/azkar/presentation/view/salah_view.dart';
 import 'package:moslem_app/feature/azkar/presentation/widget/app_button.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
+
+  final List<HomeViewModel> homeModel = [
+    HomeViewModel(
+      text: "أذكار الصباح والمساء",
+      image: "assets/images/a_am_pm.png",
+      view: AmPmView(),
+    ),
+    HomeViewModel(
+      text: "أذكار الصلاة",
+      image: "assets/images/a_salah.png",
+      view: SalahView(),
+    ),
+    HomeViewModel(
+      text: "أذكار النوم",
+      image: "assets/images/a_noom.png",
+      view: NoomView(),
+    ),
+    HomeViewModel(
+      text: "دعاء دخول المنزل و الخوج  منه",
+      image: "assets/images/a_house.png",
+      view: HouseView(),
+    ),
+    HomeViewModel(
+      text: "دعاء ختم الفرأن",
+      image: "assets/images/a_quran.png",
+      view: QuranView(),
+    ),
+    HomeViewModel(
+      text: "دعاء السفر",
+      image: "assets/images/a_safeer.png",
+      view: SafarView(),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -25,57 +59,25 @@ class HomeView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 70.h),
+                SizedBox(height: 50.h),
                 Text(
                   'حصن المسلم',
                   style: AppTextStyle.font20Weight600Black
                       .copyWith(fontSize: 30.sp),
                 ),
-                SizedBox(height: 50.h),
-                AppButton(
-                  text: "أذكار الصباح والمساء",
-                  image: "assets/images/a_am_pm.png",
-                  onTap: () {
-                    goTo(context, (context) => AmPmView());
-                  },
-                ),
-                AppButton(
-                  text: "أذكار الصلاة",
-                  image: "assets/images/a_salah.png",
-                  onTap: () {
-                    goTo(context, (context) => SalahView());
-                  },
-                ),
-                AppButton(
-                  text: "أذكار النوم",
-                  image: "assets/images/a_noom.png",
-                  onTap: () {
-                    goTo(context, (context) => NoomView());
-                  },
-                ),
-                AppButton(
-                  text: "دعاء دخول المنزل و الخوج  منه ",
-                  image: "assets/images/a_house.png",
-                  onTap: () {
-                    goTo(context, (context) => HouseView());
-                  },
-                ),
-                AppButton(
-                  text: "دعاء ختم الفرأن",
-                  image: "assets/images/a_quran.png",
-                  onTap: () {
-                    goTo(context, (context) => QuranView());
-                  },
-                ),
-                AppButton(
-                  text: "دعاء السفر ",
-                  image: "assets/images/a_safeer.png",
-                  onTap: () {
-                    goTo(context, (context) => SafarView());
-                  },
-                ),
-                Spacer(),
+                SizedBox(height: 20.h),
                 Expanded(
+                  child: ListView.builder(
+                    itemBuilder: (context, index) => AppButton(
+                      text: homeModel[index].text,
+                      image: homeModel[index].image,
+                      view: homeModel[index].view,
+                    ),
+                    itemCount: homeModel.length,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.h),
                   child: Text(
                     'ٱلَّذِینَ ءَامَنُواْ وَتَطۡمَىِٕنُّ قُلُوبُهُم بِذِكۡرِ ٱلـلَّـهِۗ أَلَا بِذِكۡرِ ٱللَّهِ تَطۡمَىِٕنُّ ٱلۡقُلُوبُ',
                     textAlign: TextAlign.center,

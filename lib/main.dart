@@ -14,7 +14,7 @@ class RunApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(390, 1000),
+      designSize: const Size(390, 860),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
@@ -27,11 +27,3 @@ class RunApp extends StatelessWidget {
     );
   }
 }
-//flutter_launcher_icons:
-// android: "launcher_icon"
-// ios: true
-// image_path: "assets/images/launcher_icon.png"
-// adaptive_icon_foreground: "assets/images/launcher_icon.png"
-// adaptive_icon_background: "#5F8F3C"
-// min_sdk_android: 21
-// remove_alpha_ios: true
